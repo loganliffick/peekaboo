@@ -1,0 +1,391 @@
+$black: #000;
+$stdBezier: cubic-bezier(.63,0,.43,1);
+
+* {
+	box-sizing: border-box;
+	list-style: none;
+}
+
+body {
+	user-select: none;
+	overscroll-behavior: none;
+	overflow-x: hidden;
+	// background: #F1EDFF;
+}
+
+.overflow {
+	overflow: hidden;
+	margin: auto;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+@font-face {
+	font-family: 'compagnon-light-italic';
+	src: url(fonts/Compagnon-LightItalic.otf);
+}
+
+
+h1 {
+	margin: 0;
+	font-family: 'Inter', sans-serif;
+	font-size: calc(24px + 1vw);
+	line-height: calc(24px + 1vw);
+	font-weight: 200;
+	letter-spacing: 1.5vw;
+	font-feature-settings: 'pnum' on, 'lnum' on;
+	text-transform: uppercase;
+}
+
+h2 {
+	margin: 0;
+	font-family: 'Inter', sans-serif;
+	font-weight: 250;
+	font-size: 20px;
+	line-height: 20px;
+	letter-spacing: 10px;
+	font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+p {
+	margin: 16px 0 16px 0;
+	font-family: 'IBM Plex Mono', monospace;
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.textLink {
+	position: relative;
+	text-decoration: none;
+	color: $black;
+	cursor: pointer;
+	&:before {
+		content: "";
+		position: absolute;
+		border-bottom: 1px solid rgba($color: $black, $alpha: 0.25);
+		width: 100%;
+		bottom: -3px;
+    }
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: -3px;
+		height: 1px;
+		width: 50%;
+		background-color: $black;
+		opacity: 0;
+		transition: all 0.4s $stdBezier;
+		left: 0;
+    }
+	&:hover:after {
+		width: 100%;
+		opacity: 1;
+		transform: scalex(1);
+	}
+}
+
+.load {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background: $black;
+	z-index: 3;
+}
+
+.loadImgContainer {
+	display: grid;
+	place-items: center;
+	width: 100vw;
+	height: 100vh;
+	opacity: 0;
+}
+
+.centerTextContainer {
+	text-align: center;
+	color: #fff;
+	position: absolute;
+	opacity: 0;
+}
+
+.timeout {
+	display: grid;
+	place-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: $black;
+	z-index: 4;
+	display: none;
+}
+
+.timeoutImgContainer {
+	display: grid;
+	place-items: center;
+	width: calc(400px + 50vw);
+	height: calc(400px + 50vh);
+	opacity: 1;
+}
+
+#scrollWrap {
+	overflow: hidden;
+	//white-space: nowrap;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	//flex-wrap: no-wrap;
+}
+
+.main {
+	flex: 0 0 100vw;
+	height: 100vh;
+	display: flex;
+	//position: relative;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.container {
+	display: grid;
+	place-items: center;
+}
+
+.imgContainer {
+	width: 50vw;
+	height: 60vh;
+	overflow: hidden;
+	border-radius: 8px;
+	z-index: -1;
+}
+
+.sliderContainer {
+	display: grid;
+	place-items: center;
+	margin: 8vh 0 0 0;
+	width: 100%;
+}
+
+.slider {
+	-webkit-appearance: none; //override default CSS
+	appearance: none;
+	width: 65%;
+	height: 1px;
+	border-radius: 2px;
+	background: rgba($color: $black, $alpha: 1);
+	outline: none;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	//slider handle
+	&::-webkit-slider-thumb {
+		-webkit-appearance: none; //override default CSS
+		appearance: none;
+		width: 25px;
+		height: 25px;
+		border-radius: 100%;
+		background: $black;
+		transition: all 0.3s $stdBezier;
+		cursor: grab;
+
+		&:hover {
+			transform: scale(0.9);
+		}
+
+		&:active {
+			transform: scale(0.8);
+			cursor: grabbing;
+		}
+	}
+}
+
+.eyeContainer {
+	display: grid;
+	place-items: center;
+	position: fixed;
+	height: 40px;
+	top: 16px;
+	left: 24px;
+	z-index: 2;
+}
+
+#eye {
+	display: grid;
+	place-items: center;
+	height: 26px;
+	width: 56px;
+	border-radius: 100%;
+	border: 1px solid $black;
+	overflow: hidden;
+	background: white;
+}
+
+#pupil {
+	height: 18px;
+	width: 18px;
+	border-radius: 100%;
+	background: $black;
+}
+
+.infoButtonContainer {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	z-index: 2;
+	display: grid;
+	place-items: center;
+}
+
+.infoButton {
+	width: 56px;
+	height: 56px;
+	border: 1px solid $black;
+	border-radius: 100%;
+	display: grid;
+	place-items: center;
+	transition: all 0.3s $stdBezier;
+
+	&:hover {
+		transform: scale(0.96);
+		cursor: pointer;
+	}
+}
+
+.counter {
+	position: fixed;
+	top: 24px;
+	right: 24px;
+	z-index: 2;
+}
+
+#close {
+	position: absolute;
+	opacity: 0;
+}
+
+#info {
+	position: absolute;
+}
+
+img {
+	-webkit-user-drag: none;
+}
+
+.popup {
+	display: none;
+	position: fixed;
+	bottom: 88px;
+	right: 24px;
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.60);
+	backdrop-filter: blur(8px);
+	box-shadow: 0px 12px 20px -5px rgba(0, 0, 0, 0.10);
+	overflow: hidden;
+	opacity: 0;
+	padding: 24px;
+	z-index: 2;
+}
+
+.popupContainer {
+	display: flex;
+	align-items: flex-start;
+
+	&.footer {
+		padding: 0 0 0 32px;
+		max-width: calc(350px + 6vw);
+	}
+}
+
+.popupBlock {
+	padding: calc(16px + 1vw) calc(8px + 1vw) calc(8px + 1vw) calc(8px + 1vw);
+	max-width: calc(80px + 10vw);
+	text-align: center;
+}
+
+.divider {
+	margin: auto 0 auto 0;
+	height: calc(64px + 3vw);
+	width: 1px;
+	background-color: rgba($color: $black, $alpha: 0.15);
+}
+
+.popupImgContainer {
+	margin: 0 auto 0 auto;
+	width: calc(64px + 4vw);
+	height: calc(64px + 4vw);
+	display: grid;
+	place-items: center;
+	position: relative;
+	max-width: 150px;
+}
+
+.icon {
+	position: absolute;
+}
+
+#iconOneMouse{
+	width: 45%;
+	height: 70%;
+	border-radius: 45%;
+	border: 1px solid $black;
+}
+
+#iconOneClickWheel {
+	width: 8%;
+	height: 8%;
+	top: 30%;
+	border-radius: 100%;
+	background: $black;
+}
+
+.iconTwoSlider {
+	width: 80%;
+	height: 1px;
+	background: $black;
+	top: 30%;
+
+	&.bottom {
+		top: auto;
+		bottom: 30%;
+	}
+}
+
+.iconTwoHandle {
+	width: 20%;
+	height: 20%;
+	background: $black;
+	border-radius: 100%;
+	top: 20%;
+
+	&.bottom {
+		top: auto;
+		bottom: 20%;
+	}
+}
+
+#iconThreeTablet {
+	width: 90%;
+	height: 70%;
+	border-radius: 10%;
+	border: 1px solid $black;
+}
+
+#iconThreePencil{
+	width: 12%;
+	height: 40%;
+	border-radius: 10% 10% 50% 50%;
+	background: $black;
+}
