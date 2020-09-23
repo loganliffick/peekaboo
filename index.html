@@ -5,16 +5,34 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Peekaboo I See You</title>
+	<meta name="description" content="An interactive gallery of animation.">
+	<link rel="shortcut icon" type="image/png" href="/icons/favicon.png">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-90992025-5"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-90992025-5');
+	</script>
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,300&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body class="overflow">
+
+	<div class="mobileOverlay">
+		<div class="mobileContainer">
+			<div class="mobileImgContainer">
+				<img src="https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif">
+			</div>
+			<h2>I promise this is more fun on desktop...</h2>
+		</div>
+	</div>
 	
 	<div class="load">
 		<div class="centerTextContainer" id="loadText">
-			<h1 id="loadTextWidth">peekaboo i see you</h1>
+			<h1>peekaboo</h1>
 		</div>
 		<div class="loadImgContainer">
 			<object data="/svg-animations/loader.svg" type="image/svg+xml" id="loader" width="140%" height="140%"></object>
@@ -22,9 +40,6 @@
 	</div>
 
 	<div class="timeout">
-		<div class="centerTextContainer" id="timeoutText">
-			<h1 id="timeoutTextWidth">please come back</h1>
-		</div>
 		<div class="timeoutImgContainer">
 			<object data="/svg-animations/leave.svg" type="image/svg+xml" width="100%" height="100%"></object>
 		</div>
@@ -74,11 +89,11 @@
 					<div class="icon" id="iconThreeTablet"></div>
 					<div class="icon" id="iconThreePencil"></div>
 				</div>
-				<p>Animations created using <a class="textLink" href="https://iorama.studio/" target="_blank">Looom</a></p>
+				<p>Animations made with <a class="textLink" href="https://iorama.studio/" target="_blank">Looom</a></p>
 			</div>
 		</div>
 		<div class="popupContainer footer">
-			<p>Gallery & site by <a class="textLink" href="https://loganliffick.com" target="_blank">Logan Liffick</a></p>
+			<p>Created by <a class="textLink" href="https://loganliffick.com" target="_blank">Logan Liffick</a></p>
 		</div>
 	</div>
 
@@ -86,10 +101,10 @@
 		<section class="main">
 			<div class="container">
 				<div class="imgContainer">
-					<object data="/svg-animations/looom-03.svg" type="image/svg+xml" id="looomsvg" width="100%" height="100%"></object>
+					<object data="/svg-animations/looom-01.svg" type="image/svg+xml" id="svgOne" width="100%" height="100%"></object>
 				</div>
 				<div class="sliderContainer">
-					<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+					<input type="range" min="1" max="250" value="125" class="slider" id="rangeOne">
 				</div>
 			</div>
 		</section>
@@ -97,10 +112,10 @@
 		<section class="main">
 			<div class="container">
 				<div class="imgContainer">
-					<object data="/svg-animations/looom-02.svg" type="image/svg+xml" width="100%" height="100%"></object>
+					<object data="/svg-animations/looom-02.svg" type="image/svg+xml" id="svgTwo" width="100%" height="100%"></object>
 				</div>
 				<div class="sliderContainer">
-					<input type="range" min="1" max="100" value="50" class="slider" id="">
+					<input type="range" min="0" max="1" step="0.01" value="0" class="slider" id="rangeTwo">
 				</div>
 			</div>
 		</section>
@@ -108,10 +123,10 @@
 		<section class="main">
 			<div class="container">
 				<div class="imgContainer">
-					<object data="/svg-animations/looom-01.svg" type="image/svg+xml" width="100%" height="100%"></object>
+					<object data="/svg-animations/looom-03.svg" type="image/svg+xml" id="svgThree" width="100%" height="100%"></object>
 				</div>
 				<div class="sliderContainer">
-					<input type="range" min="1" max="100" value="50" class="slider" id="">
+					<input type="range" min="0" max="255" value="127.5" step="3" class="slider" id="rangeThree">
 				</div>
 			</div>
 		</section>
@@ -119,10 +134,10 @@
 		<section class="main">
 			<div class="container">
 				<div class="imgContainer">
-					<object data="/svg-animations/looom-04.svg" type="image/svg+xml" width="100%" height="100%"></object>
+					<object data="/svg-animations/looom-04.svg" type="image/svg+xml" id="svgFour" width="140%" height="140%"></object>
 				</div>
 				<div class="sliderContainer">
-					<input type="range" min="1" max="100" value="50" class="slider" id="">
+					<input type="range" min="0" max="1" step="0.01" value="0" class="slider" id="rangeFour">
 				</div>
 			</div>
 		</section>
@@ -130,10 +145,10 @@
 		<section class="main">
 			<div class="container">
 				<div class="imgContainer">
-					<object data="/svg-animations/looom-03.svg" type="image/svg+xml" id="looomsvg" width="100%" height="100%"></object>
+					<object data="/svg-animations/looom-01.svg" type="image/svg+xml" id="svgFinal" width="100%" height="100%"></object>
 				</div>
 				<div class="sliderContainer">
-					<input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+					<input type="range" min="1" max="250" value="125" class="slider" id="rangeFinal">
 				</div>
 			</div>
 		</section>

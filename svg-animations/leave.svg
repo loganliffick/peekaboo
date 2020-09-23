@@ -6,21 +6,21 @@
 
 #t0 {
 --visible:1; --timeOffset:12; --speed:8; --bookmarkIndex:-1; --latched:0; --playMode:0; --masked:0; --blendMode:0; 
-stroke:#FFFFFF; stroke-opacity:1; fill-opacity:0; stroke-width:14.2057; stroke-linecap:round; stroke-linejoin:round;
+stroke:#FFFFFF; stroke-opacity:1; fill-opacity:0; stroke-width:10; stroke-linecap:round; stroke-linejoin:round;
 }
 @keyframes t0 { 0% { opacity: 1; } 25% { opacity: 0; } }
 #t0 .frame { animation:t0 0.5s calc(var(--index) * 0.125s) steps(1) infinite; }
 
 #t1 {
 --visible:1; --timeOffset:10.5; --speed:8; --bookmarkIndex:-1; --latched:0; --playMode:0; --masked:0; --blendMode:0; 
-stroke:#FFFFFF; stroke-opacity:1; fill-opacity:0; stroke-width:14.2057; stroke-linecap:round; stroke-linejoin:round;
+stroke:#FFFFFF; stroke-opacity:1; fill-opacity:0; stroke-width:10; stroke-linecap:round; stroke-linejoin:round;
 }
 @keyframes t1 { 0% { opacity: 1; } 25% { opacity: 0; } }
 #t1 .frame { animation:t1 0.5s calc(var(--index) * 0.125s) steps(1) infinite; }
 
 #t2 {
 --visible:1; --timeOffset:8; --speed:8; --bookmarkIndex:-1; --latched:0; --playMode:0; --masked:0; --blendMode:0; 
-stroke:#FFFFFF; stroke-opacity:1; fill-opacity:0; stroke-width:14.2057; stroke-linecap:round; stroke-linejoin:round;
+stroke:#FFFFFF; stroke-opacity:1; fill-opacity:0; stroke-width:10; stroke-linecap:round; stroke-linejoin:round;
 }
 @keyframes t2 { 0% { opacity: 1; } 12.5% { opacity: 0; } }
 #t2 .frame { animation:t2 1s calc(var(--index) * 0.125s) steps(1) infinite; }

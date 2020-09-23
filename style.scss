@@ -30,21 +30,22 @@ body {
 
 h1 {
 	margin: 0;
-	font-family: 'Inter', sans-serif;
-	font-size: calc(24px + 1vw);
-	line-height: calc(24px + 1vw);
-	font-weight: 200;
-	letter-spacing: 1.5vw;
+	font-family: 'compagnon-light-italic', serif;
+	font-size: calc(40px + 1vw);
+	line-height: calc(40px + 1vw);
+	font-weight: 250;
+	letter-spacing: 2vw;
 	font-feature-settings: 'pnum' on, 'lnum' on;
-	text-transform: uppercase;
+	color: #fff;
+	//text-transform: uppercase;
 }
 
 h2 {
 	margin: 0;
-	font-family: 'Inter', sans-serif;
+	font-family: 'compagnon-light-italic', serif;
 	font-weight: 250;
-	font-size: 20px;
-	line-height: 20px;
+	font-size: 24px;
+	line-height: 32px;
 	letter-spacing: 10px;
 	font-feature-settings: 'pnum' on, 'lnum' on;
 }
@@ -109,13 +110,11 @@ p {
 
 .centerTextContainer {
 	text-align: center;
-	color: #fff;
 	position: absolute;
 	opacity: 0;
 }
 
 .timeout {
-	display: grid;
 	place-items: center;
 	position: fixed;
 	top: 0;
@@ -125,6 +124,30 @@ p {
 	background: $black;
 	z-index: 4;
 	display: none;
+}
+
+.mobileOverlay {
+	place-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: $black;
+	overflow: hidden;
+	z-index: 5;
+	display: none;
+}
+
+.mobileImgContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mobileContainer {
+	text-align: center;
+	color: #fff;
 }
 
 .timeoutImgContainer {
@@ -266,8 +289,8 @@ p {
 
 .counter {
 	position: fixed;
-	top: 24px;
-	right: 24px;
+	top: 16px;
+	right: 16px;
 	z-index: 2;
 }
 
@@ -388,4 +411,14 @@ img {
 	height: 40%;
 	border-radius: 10% 10% 50% 50%;
 	background: $black;
+}
+
+@media only screen and (max-width: 450px) {
+	h2 {
+		margin-top: 24px;
+		letter-spacing: 0px;
+	}
+    .mobileOverlay {
+		display: grid;
+	}
 }

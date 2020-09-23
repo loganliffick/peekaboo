@@ -2,25 +2,24 @@ const stdBezier = 'cubicBezier(.63,0,.43,1)';
 
 let tl;
 
-loopText = (target, target2) => {
-	width = () => {
-		anime({
-			targets: target2,
-			easing: stdBezier,
-			loop: true,
-			direction: 'alternate',
-			duration: 1500,
-			fontWeight: [200,700],
-			letterSpacing: ['1.5vw', '2vw']
-		});
-	};
+loopText = (target) => {
+	// width = () => {
+	// 	anime({
+	// 		targets: target2,
+	// 		easing: stdBezier,
+	// 		loop: false,
+	// 		direction: 'alternate',
+	// 		duration: 1800,
+	// 		//delay: 1000,
+	// 		letterSpacing: ['1vw', '1.5vw']
+	// 	});
+	// };
 	anime({
 		targets: target,
-		duration: 800,
+		duration: 2500,
 		opacity: [0,1],
-		easing: stdBezier,
-		endDelay: 250,
-		complete: width
+		easing: stdBezier
+		//begin: width
 	});
 }
 
@@ -39,12 +38,12 @@ window.onload = () => {
 		targets: '.loadImgContainer',
 		duration: 1500,
 		opacity: [0,1],
-		complete: loopText('#loadText', '#loadTextWidth')
+		complete: loopText('#loadText')
 	})
 	.add({
 		targets: '.load',
 		duration: duration,
-		delay: 4000,
+		delay: 2000,
 		translateX: ['0','-100vw'],
 		complete: overflowEnable
 	})
@@ -54,7 +53,7 @@ window.onload = () => {
 		translateX: ['100vw','0'],
 		complete: () => {
 			// killing unneeded animations
-			anime.remove('.loadImgContainer, .load, #scrollWrap, .eyeContainer, .counter, .infoButtonContainer, #loadText, #loadTextWidth');
+			anime.remove('.loadImgContainer, .load, #loadText, #scrollWrap, .eyeContainer, .counter, .infoButtonContainer');
 		}
 	}, '-='+duration);
 	console.log('loaded');
@@ -220,21 +219,11 @@ trueCount.innerHTML = 1;
 const sections = document.querySelectorAll('.container');
 let i;
 
-// updateCountAnimation = () => {
-// 	testpenis = anime({
-// 		targets: '.trueCount',
-// 		opacity: [0,1],
-// 		duration: 500,
-// 		easing: stdBezier
-// 	});
-// }
-
 for (i = 0; i < sections.length; i++) {
 	sections[i].id = i + 1;
 	const waypoint = new Waypoint({
 		element: sections[i],
 		handler: function(direction) {
-			//updateCountAnimation();
 
 			if (direction == 'right') {
 				//console.log('right');
@@ -289,9 +278,9 @@ cursorStalker.addEventListener('mouseleave', () => {
 	timer = setTimeout(() => {
 		document.querySelector('.timeout').style.display = 'grid';
 		document.title = 'We miss you...';
+		document.querySelector("link[rel='shortcut icon']").href = "/icons/favicon-timeout.png";
 		timeoutAnimation();
-		loopText('#timeoutText', '#timeoutTextWidth');
-	}, 4000);
+	}, 15000);
 	// ease pupil back to center
 	pupil.style.transition = 'all 0.3s ease';
 	pupil.style.transform = 'translate(0,0)';
@@ -304,14 +293,12 @@ cursorStalker.addEventListener('mouseenter', () => {
 	document.querySelector('.timeout').style.display = 'none';
 	// pupil does not follow cursor well with transition value applied
 	pupil.style.transition = 'none';
-	// resetting text style in case of multiple timeouts
-	timeoutText.style.fontWeight = 200;
-	timeoutText.style.letterSpacing = '1.5vw';
 	// blink upon cursor re-entry to mask pupil movement with cursor
 	eyeBlinkAnimation(0, false, '2px', '26px', '100%');
 	document.title = 'Peekaboo I See You';
+	document.querySelector("link[rel='shortcut icon']").href = "/icons/favicon.png";
 	// killing unneeded animations
-	anime.remove('#timeoutText, #timeoutTextWidth, .timeoutImgContainer');
+	anime.remove('.timeoutImgContainer');
 });
 
 timeoutAnimation = () => {
@@ -354,9 +341,9 @@ const loaderSVG = document.getElementById('loader');
 
 loaderSVG.addEventListener('load', () => {
 	// get the inner DOM of alpha.svg
-	let svgDoc = loaderSVG.contentDocument;
+	const svgDoc = loaderSVG.contentDocument;
 	// get the inner element by id
-	let layerSelect = svgDoc.getElementById('t0');
+	const layerSelect = svgDoc.getElementById('t0');
 	const strokeColor = ['3051FF', '8830FF', 'FF3030', 'FF9E30', '00D0B8'];
 	// chooses color from array
 	const randomizer = strokeColor[Math.floor(Math.random() * strokeColor.length)];
@@ -364,19 +351,110 @@ loaderSVG.addEventListener('load', () => {
 	layerSelect.style.stroke = '#' + randomizer;
 });
 
-const a = document.getElementById('looomsvg');
-const slider = document.getElementById('myRange');
+const svgOne = document.getElementById('svgOne');
 
-a.addEventListener('load', () => {
+svgOne.addEventListener('load', () => {
+	const slider = document.getElementById('rangeOne');
 	// get the inner DOM of alpha.svg
-	let svgDoc = a.contentDocument;
+	const svgDoc = svgOne.contentDocument;
 	// get the inner element by id
-	let layerSelect = svgDoc.getElementById('t3');
-	let layerSelectTwo = svgDoc.getElementById('t2');
+	const squares = svgDoc.getElementById('t2');
+	const lines = svgDoc.getElementById('t3');
+
 	// update the current slider value
 	slider.oninput = function() {
-		layerSelect.style.strokeWidth = this.value;
-		layerSelectTwo.style.strokeWidth = this.value;
+		squares.style.strokeWidth = this.value;
+		lines.style.strokeWidth = this.value;
 		console.log(this.value);
+	}
+});
+
+// copy of first SVG to mask transition
+const svgFinal = document.getElementById('svgFinal');
+
+svgFinal.addEventListener('load', () => {
+	const slider = document.getElementById('rangeFinal');
+	// get the inner DOM of alpha.svg
+	const svgDoc = svgFinal.contentDocument;
+	// get the inner element by id
+	const squares = svgDoc.getElementById('t2');
+	const lines = svgDoc.getElementById('t3');
+
+	// update the current slider value
+	slider.oninput = function() {
+		squares.style.strokeWidth = this.value;
+		lines.style.strokeWidth = this.value;
+		console.log(this.value);
+	}
+});
+
+const svgTwo = document.getElementById('svgTwo');
+
+svgTwo.addEventListener('load', () => {
+	const slider = document.getElementById('rangeTwo');
+	// get the inner DOM of alpha.svg
+	const svgDoc = svgTwo.contentDocument;
+	// get the inner elements by id
+	const walkBack = svgDoc.getElementById('t0');
+	const walkFront = svgDoc.getElementById('t1');
+	const runBack = svgDoc.getElementById('t2');
+	const runFront = svgDoc.getElementById('t3');
+
+	// update the current slider value
+	slider.oninput = function() {
+		walkBack.style.strokeOpacity = 1 - this.value;
+		walkFront.style.strokeOpacity = 1 - this.value;
+		runBack.style.strokeOpacity = this.value;
+		runFront.style.strokeOpacity = this.value;
+	}
+});
+
+const svgThree = document.getElementById('svgThree');
+
+svgThree.addEventListener('load', () => {
+	const slider = document.getElementById('rangeThree');
+	// get the inner DOM of alpha.svg
+	const svgDoc = svgThree.contentDocument;
+	// get the inner elements by id
+	const shadow = svgDoc.getElementById('t0');
+	const main = svgDoc.getElementById('t1');
+	const flash = svgDoc.getElementById('t2');
+	const background = svgDoc.querySelector('svg');
+
+	// update the current slider value
+	slider.oninput = function() {
+		let colorNbr = [];
+		for (i = 0; i < 255; i++) {
+			colorNbr.push(i);
+		};
+		let colorSelect = [];
+		for (i = 0; i < 3; i++) {
+			randomizer = colorNbr[Math.floor(Math.random() * colorNbr.length)];
+			colorSelect.push(randomizer);
+		};
+
+		main.style.fill = 'rgb(' + colorSelect[0] + ',' + colorSelect[1] + ',' + colorSelect[2] + ')';
+		shadow.style.fill = 'rgb(' + colorSelect[1] + ',50, 250)';
+		flash.style.stroke = 'rgb(' + colorSelect[2] + ',' + colorSelect[0] + ',' + this.value + ')';
+		background.style.backgroundColor = 'rgb(75,' + this.value + ',255)';
+	}
+});
+
+const svgFour = document.getElementById('svgFour');
+
+svgFour.addEventListener('load', () => {
+	const slider = document.getElementById('rangeFour');
+	// get the inner DOM of alpha.svg
+	const svgDoc = svgFour.contentDocument;
+	// get the inner elements by id
+	const blueJellies = svgDoc.getElementById('t2');
+	const yellowSnakes = svgDoc.getElementById('t3');
+	const neonRectangles = svgDoc.getElementById('t4');
+
+	// update the current slider value
+	slider.oninput = function() {
+		blueJellies.style.strokeOpacity = this.value;
+		yellowSnakes.style.strokeOpacity = this.value;
+		neonRectangles.style.fillOpacity = this.value;
 	}
 });
