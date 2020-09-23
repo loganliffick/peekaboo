@@ -56,14 +56,14 @@ window.onload = () => {
 			anime.remove('.loadImgContainer, .load, #loadText, #scrollWrap, .eyeContainer, .counter, .infoButtonContainer');
 		}
 	}, '-='+duration);
-	console.log('loaded');
+	//console.log('loaded');
 
 }
 
 overflowEnable = () => {
 	document.querySelector('body').classList.remove('overflow'),
 	document.querySelector('.load').style.display = 'none';
-	console.log('overflow enabled');
+	//console.log('overflow enabled');
 }
 
 const page = document.getElementById('scrollWrap');
